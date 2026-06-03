@@ -2,8 +2,7 @@
 defineOptions({ name: "MenuMenu" });
 
 import { ref, computed, watch, onMounted } from "vue";
-import { clickOutside } from "@svar-ui/lib-dom";
-import { calculatePosition } from "@svar-ui/lib-dom";
+import { clickOutside, calculatePosition, getPopupParents } from "@svar-ui/lib-dom";
 import { asDirective } from "@svar-ui/lib-vue";
 
 import MenuOption from "./MenuOption.vue";
@@ -43,9 +42,19 @@ function updatePosition() {
 	if (result) {
 		x.value = result.x;
 		y.value = result.y;
-		z.value = result.z;
 		width.value = result.width;
 	}
+
+	let nextZ = result?.z ?? 20;
+	// stay above ancestor popups (anchor lives in original DOM, not the portal)
+	const parents = props.parent ? getPopupParents(props.parent) : [];
+	let popupZ = 0;
+	for (const node of parents) {
+		const zi = parseInt(getComputedStyle(node).zIndex, 10);
+		if (zi > popupZ) popupZ = zi;
+	}
+	if (popupZ >= nextZ) nextZ = popupZ + 1;
+	z.value = nextZ;
 }
 
 if (props.mount) props.mount(updatePosition);
@@ -75,7 +84,7 @@ watch(
 
 <template>
 	<div
-		v-clickoutside="{ callback: cancel, modal: true }"
+		v-clickoutside="{ callback: cancel, modal: true, parent: () => parent }"
 		ref="self"
 		data-wx-menu="true"
 		:class="['wx-menu', css]"

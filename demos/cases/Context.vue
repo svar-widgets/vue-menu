@@ -27,7 +27,10 @@ function clicked(ev) {
 	<div class="demo-box">
 		<h3>Nested context menus</h3>
 		<ContextMenu :options="options" :onclick="clicked" at="point">
-			<div class="double-box" style="padding: 20px; background: #ddd">
+			<div
+				class="double-box"
+				style="padding: 20px; background: var(--wx-background-alt)"
+			>
 				Click me (outer menu)
 				<br />
 				<ContextMenu
@@ -40,7 +43,7 @@ function clicked(ev) {
 							display: inline-block;
 							width: 150px;
 							padding: 10px;
-							background: #fff;
+							background: var(--wx-background);
 						"
 						>(inner menu)</span>
 				</ContextMenu>
