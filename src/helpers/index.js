@@ -11,7 +11,7 @@ export function mapData(data, cb) {
 	return data
 		.map((a, i) => {
 			const out = cb(a, i);
-			if (a.data && a.data.length) out.data = mapData(a.data, cb);
+			if (out && a.data && a.data.length) out.data = mapData(a.data, cb);
 			return out;
 		})
 		.filter(Boolean);
@@ -44,7 +44,8 @@ export function prepareMenuData(data) {
 
 const handlers = {};
 export function getItemHandler(type) {
-	return handlers[type] || type;
+	// unregistered string types are not renderable, same as before typing
+	return (typeof type === "string" && handlers[type]) || type;
 }
 export function registerMenuItem(type, handler) {
 	handlers[type] = handler;

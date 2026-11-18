@@ -4,7 +4,7 @@ import { Portal } from "@svar-ui/vue-core";
 import Menu from "./Menu.vue";
 
 const props = defineProps({
-	options: {},
+	options: { default: () => [] },
 	at: { default: "bottom" },
 	css: { default: "" },
 	onclick: { type: Function },

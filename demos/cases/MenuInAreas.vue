@@ -50,10 +50,9 @@ const popup = ref(false);
 			<Button
 				v-for="(item, i) in active"
 				:key="i"
-				:onclick="ev => menu1.show(ev, i)"
-				:value="active[i]"
+				:onclick="ev => menu1?.show(ev, i)"
 			>
-				{{ byId(item).text }}
+				{{ byId(item)?.text }}
 			</Button>
 		</div>
 	</Popup>
@@ -74,10 +73,9 @@ const popup = ref(false);
 			<Button
 				v-for="(item, i) in active"
 				:key="i"
-				:onclick="ev => menu2.show(ev, i)"
-				:value="active[i]"
+				:onclick="ev => menu2?.show(ev, i)"
 			>
-				{{ byId(item).text }}
+				{{ byId(item)?.text }}
 			</Button>
 		</div>
 	</ModalArea>
@@ -99,10 +97,9 @@ const popup = ref(false);
 			<Button
 				v-for="(item, i) in active"
 				:key="i"
-				:onclick="ev => menu3.show(ev, i)"
-				:value="active[i]"
+				:onclick="ev => menu3?.show(ev, i)"
 			>
-				{{ byId(item).text }}
+				{{ byId(item)?.text }}
 			</Button>
 		</div>
 	</SideArea>

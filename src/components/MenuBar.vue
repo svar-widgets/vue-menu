@@ -8,7 +8,7 @@ import { prepareMenuData } from "../helpers";
 const props = defineProps({
 	css: { default: "" },
 	menuCss: { default: "" },
-	options: {},
+	options: { default: () => [] },
 	onclick: { type: Function },
 });
 

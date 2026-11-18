@@ -11,7 +11,7 @@ import { prepareMenuData } from "../helpers";
 const vClickoutside = asDirective(clickOutside);
 
 const props = defineProps({
-	options: {},
+	options: { default: () => [] },
 	left: { default: 0 },
 	top: { default: 0 },
 	at: { default: "bottom" },
@@ -32,6 +32,7 @@ const showSub = ref(false);
 const activeOption = ref(null);
 
 function updatePosition() {
+	if (!self.value) return;
 	const result = calculatePosition(
 		self.value,
 		props.parent,

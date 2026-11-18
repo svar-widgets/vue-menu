@@ -36,8 +36,8 @@ const menu = ref(null);
 			ref="menu"
 		/>
 		<template v-for="(item, i) in active" :key="i">
-			<Button :onclick="ev => menu.show(ev, i)" :value="active[i]">
-				{{ byId(item).text }}
+			<Button :onclick="ev => menu?.show(ev, i)">
+				{{ byId(item)?.text }}
 			</Button>
 			&nbsp;
 		</template>

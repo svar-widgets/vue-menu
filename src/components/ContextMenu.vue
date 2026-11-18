@@ -5,7 +5,7 @@ import ActionMenu from "./ActionMenu.vue";
 const slots = useSlots();
 
 const props = defineProps({
-	options: {},
+	options: { default: () => [] },
 	at: { default: "bottom" },
 	resolver: { default: null },
 	dataKey: { default: "contextId" },

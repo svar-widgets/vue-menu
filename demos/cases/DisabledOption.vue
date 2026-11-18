@@ -10,7 +10,7 @@ function disableEdit(options) {
 	const option = options.find(
 		o => o.id === "edit" || o.id === "edit-task"
 	);
-	option.disabled = true;
+	if (option) option.disabled = true;
 }
 
 const barOptions = computed(() => {

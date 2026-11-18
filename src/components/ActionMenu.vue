@@ -6,7 +6,7 @@ import Menu from "./Menu.vue";
 import { filterMenu } from "../helpers";
 
 const props = defineProps({
-	options: {},
+	options: { default: () => [] },
 	at: { default: "bottom" },
 	resolver: { default: null },
 	dataKey: { default: "contextId" },

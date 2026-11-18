@@ -46,7 +46,7 @@ const menu = ref(null);
 		<p>Click on menu "button"</p>
 		<div v-for="item in items" :key="item.id" class="item">
 			<div class="icon">
-				<Icon css="wxi-menu" :onclick="ev => menu.show(ev, item.id)" />
+				<Icon css="wxi-menu" :onclick="ev => menu?.show(ev, item.id)" />
 			</div>
 			<div class="title">{{ item.type }} {{ item.id }}</div>
 		</div>
